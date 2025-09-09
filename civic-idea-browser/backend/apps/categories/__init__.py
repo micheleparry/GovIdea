@@ -1,0 +1,1 @@
+# Categories app for Civic Ideas platform 

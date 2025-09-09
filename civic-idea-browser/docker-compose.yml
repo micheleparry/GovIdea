@@ -1,0 +1,123 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: civic_ideas_postgres
+    environment:
+      POSTGRES_DB: civic_ideas_db
+      POSTGRES_USER: civic_user
+      POSTGRES_PASSWORD: civic_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - civic_network
+
+  # Redis for caching and Celery
+  redis:
+    image: redis:7-alpine
+    container_name: civic_ideas_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - civic_network
+
+  # Django Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: civic_ideas_backend
+    environment:
+      - DEBUG=1
+      - DATABASE_URL=postgresql://civic_user:civic_password@postgres:5432/civic_ideas_db
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=your-secret-key-here-change-in-production
+      - ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - civic_network
+    command: python manage.py runserver 0.0.0.0:8000
+
+  # Celery Worker
+  celery:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: civic_ideas_celery
+    environment:
+      - DEBUG=1
+      - DATABASE_URL=postgresql://civic_user:civic_password@postgres:5432/civic_ideas_db
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=your-secret-key-here-change-in-production
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - civic_network
+    command: celery -A civic_ideas worker -l info
+
+  # Celery Beat (Scheduler)
+  celery-beat:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: civic_ideas_celery_beat
+    environment:
+      - DEBUG=1
+      - DATABASE_URL=postgresql://civic_user:civic_password@postgres:5432/civic_ideas_db
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=your-secret-key-here-change-in-production
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - civic_network
+    command: celery -A civic_ideas beat -l info
+
+  # Next.js Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: civic_ideas_frontend
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000/api
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - civic_network
+    command: npm run dev
+
+volumes:
+  postgres_data:
+  redis_data:
+  static_volume:
+  media_volume:
+
+networks:
+  civic_network:
+    driver: bridge 

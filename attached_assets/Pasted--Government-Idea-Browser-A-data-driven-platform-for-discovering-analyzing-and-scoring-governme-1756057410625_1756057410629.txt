@@ -1,0 +1,440 @@
+# Government Idea Browser
+
+A data-driven platform for discovering, analyzing, and scoring government opportunities and pain points through intelligent web scraping and AI analysis. Built with Next.js 14, TypeScript, and Supabase.
+
+## 🚀 Features
+
+### Core Functionality
+- **Intelligent Data Scraping**: Automated collection from government sources (Reddit, Facebook, government sites, SBIR, NSF, DOE, DARPA, Sam.gov, etc.)
+- **AI-Powered Analysis**: Claude AI for identifying pain points, opportunities, and trends
+- **Opportunity Scoring**: Feasibility and impact scoring for government opportunities
+- **Trend Analysis**: Real-time tracking of government discussion topics and pain points
+- **Research Reports**: Comprehensive analysis of government contract opportunities
+
+### User Experience
+- **Clean Dashboard Interface**: Ideabrowser-style interface for browsing government opportunities
+- **Opportunity of the Day**: Featured government opportunity with analysis
+- **Trending Topics**: Hot government pain points and discussions
+- **Market Insights**: Government contract analysis and opportunity scoring
+- **Research Reports**: Deep-dive analysis of specific government sectors
+
+### Advanced Features
+- **Multi-Source Data Collection**: Reddit, Facebook, government sites, SBIR, NSF, DOE, IARPA, AFWerx, DARPA, Sam.gov, RFP/RFQ/RFI announcements
+- **Pain Point Identification**: AI-powered analysis of government contractor frustrations (e.g., 18-24 month contract processing delays)
+- **Opportunity Scoring**: Feasibility, impact, and timing analysis for government opportunities
+- **Trend Analysis**: Real-time tracking of government discussion topics and emerging needs
+- **Market Intelligence**: Comprehensive analysis of government contracting landscape
+
+## 🛠️ Technology Stack
+
+### Frontend
+- **Next.js 14**: React framework with App Router
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Utility-first CSS framework
+- **Lucide React**: Beautiful icons
+- **React Context**: State management
+
+### Backend
+- **Supabase**: Backend-as-a-Service
+  - PostgreSQL database
+  - Real-time subscriptions
+  - Row Level Security (RLS)
+  - Authentication
+- **Next.js API Routes**: Server-side API endpoints
+
+### External Integrations
+- **DataForSEO**: Market research and keyword analysis for government opportunities
+- **Firecrawl**: Web scraping for government data collection from multiple sources
+- **Claude AI**: AI-powered analysis of government pain points and opportunities
+- **Email Service**: Research report delivery and opportunity alerts
+
+## 📁 Project Structure
+
+```
+government-idea-browser/
+├── src/
+│   ├── app/                    # Next.js App Router pages
+│   │   ├── page.tsx           # Main dashboard (Opportunity of the Day)
+│   │   ├── opportunities/     # Government opportunity listings
+│   │   ├── trends/            # Trending topics and pain points
+│   │   ├── research/          # Research reports and analysis
+│   │   └── admin/             # Data pipeline management
+│   ├── components/            # Reusable React components
+│   │   ├── OpportunityCard.tsx # Government opportunity display
+│   │   ├── TrendAnalysis.tsx  # Trend visualization
+│   │   ├── PainPointChart.tsx # Pain point analysis
+│   │   ├── ResearchReport.tsx # Research report display
+│   │   └── ...                # Other UI components
+│   └── lib/                   # Utility libraries
+│       ├── supabase.ts        # Supabase client
+│       ├── database.ts        # Database operations
+│       ├── firecrawl.ts       # Web scraping for government data
+│       ├── dataforseo.ts      # Market research integration
+│       ├── analytics.ts       # Analytics and trend analysis
+│       ├── api.ts             # External API integrations
+│       ├── realtime.ts        # Real-time data updates
+│       └── types.ts           # TypeScript definitions
+├── scrapers/                  # Data collection scripts
+│   ├── reddit-scraper.ts      # Reddit government discussions
+│   ├── government-sites.ts    # Government site scraping
+│   ├── sam-gov-scraper.ts     # Sam.gov contract data
+│   └── facebook-scraper.ts    # Facebook B2G groups
+└── database-schema.sql        # Database schema for opportunities
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- Supabase account
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd government-idea-browser
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up Supabase**
+   - Create a new Supabase project
+   - Run the database schema: `database-schema.sql`
+   - Get your project URL and anon key
+
+4. **Environment Variables**
+   Create `.env.local`:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   NEXT_PUBLIC_APP_URL=http://localhost:3000
+   ```
+
+5. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+6. **Open your browser**
+   Navigate to `http://localhost:3000`
+
+## 📊 Database Schema
+
+The application uses PostgreSQL with the following main tables:
+
+- **opportunities**: Government opportunities and pain points
+- **data_sources**: External data sources (Reddit, government sites, etc.)
+- **scraped_data**: Raw data from web scraping
+- **analysis_results**: AI analysis of opportunities and pain points
+- **trends**: Trend analysis and scoring
+- **research_reports**: Generated research reports
+- **analytics**: Usage analytics and performance metrics
+
+## 🔧 Configuration
+
+### Supabase Setup
+1. Configure database for opportunity storage
+2. Set up data pipeline for scraped content
+3. Configure real-time updates for new opportunities
+4. Set up analytics tracking
+
+### External APIs
+- **DataForSEO**: Add API key for government opportunity research
+- **Firecrawl**: Configure for government site scraping
+- **Claude AI**: Set up API key for pain point analysis
+- **Reddit API**: Configure for government discussion scraping
+- **Government APIs**: SBIR, NSF, DOE, DARPA data access
+
+## 🔍 Data Collection Features
+
+The application includes comprehensive data collection:
+- **Multi-Source Scraping**: Reddit, Facebook, government sites, SBIR, NSF, DOE, DARPA
+- **Real-Time Updates**: Continuous monitoring of government discussions
+- **AI Analysis**: Automated pain point and opportunity identification
+- **Trend Tracking**: Real-time analysis of government contracting trends
+
+## 🔍 Analysis Features
+
+### Opportunity Analysis
+- **Pain Point Identification**: AI-powered analysis of government contractor frustrations
+- **Opportunity Scoring**: Feasibility, impact, and timing analysis
+- **Trend Analysis**: Real-time tracking of government discussion topics
+- **Market Intelligence**: Comprehensive government contracting landscape analysis
+
+### AI Integration
+- **Automated Analysis**: Claude AI for opportunity and pain point identification
+- **Market Research**: DataForSEO integration for government opportunity analysis
+- **Content Generation**: Automated research reports and insights
+
+## 📈 Analytics
+
+Comprehensive analytics including:
+- **Opportunity Metrics**: Government opportunities discovered, pain points identified
+- **Trend Analytics**: Trending topics, emerging government needs
+- **Performance Metrics**: Data collection efficiency, analysis accuracy
+- **Export Options**: Research reports, opportunity data in CSV and JSON formats
+
+## 🔐 Security
+
+- **Data Protection**: Secure handling of government data and contractor information
+- **API Security**: Secure access to government APIs and data sources
+- **Rate Limiting**: API request throttling for external services
+- **Input Validation**: Client and server-side validation for scraped data
+- **CORS Configuration**: Cross-origin request handling for data collection
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+1. Connect your GitHub repository
+2. Configure environment variables
+3. Deploy automatically on push
+
+### Other Platforms
+- **Netlify**: Static site hosting
+- **Railway**: Full-stack deployment
+- **DigitalOcean**: Custom server setup
+
+## 📚 API Documentation
+
+The application provides a comprehensive REST API:
+
+### Endpoints
+- `GET /api/opportunities` - List government opportunities
+- `GET /api/opportunities/:id` - Get opportunity details
+- `GET /api/trends` - Get trending topics and pain points
+- `GET /api/research/:sector` - Get research reports by sector
+- `GET /api/analytics` - Get analytics and performance metrics
+- `POST /api/scrape` - Trigger data collection from sources
+
+### Data Sources
+- Reddit government discussions
+- Facebook B2G groups
+- Government sites (SBIR, NSF, DOE, DARPA, Sam.gov)
+- RFP/RFQ/RFI announcements
+
+### Rate Limiting
+- 100 requests per minute per IP
+- 1000 requests per hour per user
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🆘 Support
+
+For support and questions:
+- Create an issue on GitHub
+- Check the documentation
+- Contact the development team
+
+## 💰 Pricing
+
+### Choose Your Plan
+
+Stop wasting weeks researching government opportunities that go nowhere. Get instant access to pre-validated government contracts and pain points with 50+ hours of analysis already done for you.
+
+Start with the right toolkit and turn government intelligence into winning proposals.
+
+## 📊 FAQ
+
+### How much time will this actually save me?
+
+Each government opportunity in our database represents 50+ hours of research condensed into a 10-minute read. Instead of spending weeks validating an opportunity through Reddit posts, trend analysis, competitor research, and market sizing, you get it all instantly. With AI agents, you can get custom research reports delivered to you that would typically take days of manual work.
+
+### What's included in the free plan?
+
+The free plan includes daily Opportunity of the Day emails with full government analysis including market research, contractor-fit assessment, and trend insights. It's the same depth of analysis as our paid plans, just limited to one opportunity per day.
+
+### How many opportunities are in the database?
+
+We currently have 180+ fully validated government opportunities in our database, with 25+ new opportunities added weekly. Pro users get access to Pro Picks - the top 5% of government opportunities our power users check first.
+
+### What makes these opportunities different from other government lists?
+
+Each opportunity comes with comprehensive market analysis, revenue potential calculations, implementation guides, required resources, competition overview, and risk assessment. We validate with real market signals, not just surface-level inspiration.
+
+### Can I cancel anytime?
+
+Yes, you can cancel your subscription anytime. Your access will continue until the end of your current billing period. No questions asked.
+
+### What are AI Research Agent and AI Chat Strategist?
+
+AI Research Agent creates custom reports on any government opportunity you're interested in. AI Chat Strategist gives you 100 Q&A sessions per month to pressure-test government proposals, funnels, and copy. Both are exclusive to Pro plans.
+
+### How do I know which opportunities match my skills and budget?
+
+Our contractor-fit assessment instantly shows which government opportunities match your skills, capital, and situation. You can filter opportunities by required investment, technical skills needed, and time commitment.
+
+### Is my opportunity private when I use the AI Research Agent?
+
+Yes, your opportunities and research reports are completely private. Reports generated by the AI Research Agent are only visible to your account and will never be displayed to other users.
+
+## Free - Daily Government Deep Dive
+
+**$0/forever**
+
+You want full government opportunity analysis delivered to you, but don't need to browse everything. A daily email to get your government intelligence flowing.
+
+Get deep insights that save hours of research, one opportunity at a time. Bonus: you will learn how to evaluate government opportunities.
+
+* One fully-researched government opportunity delivered daily
+* Complete market analysis and trend insights on the opportunity of the day
+* See the power of Government Idea Browser (same depth as the starter plan but limited to the opportunity of the day)
+* Real validation and market signals, not just surface-level inspiration on the opportunity of the day
+
+**Launch Price**
+
+## Starter - Government Opportunity Hunter
+
+**$199/year** ~~$399 regularly~~
+
+You're serious about finding THE government opportunity FOR YOU and need to compare research for multiple contracts quickly.
+
+Browse, compare, and shortlist government opportunities in days instead of months. Find your perfect match faster.
+
+* Browse 400+ validated government opportunities, not limited to the opportunity of the day
+* Trends to see government needs before they explode
+* Community Signals: Uncover hidden government opportunities by analyzing real contractor pain points and solution gaps
+* Contractor-fit assessments that match your skills, capital, and situation to government opportunities
+* Save hours of research with our pre-researched government contracts
+
+**Launch Price**
+
+## Pro - Government Intelligence Command Center
+
+**$699/year** ~~$999 regularly~~
+
+Get your government opportunities analyzed by AI Agent. It's like having a team of government analysts for your proposals.
+
+Operate with unfair leverage - weeks of government research delivered on demand so you can bid, pitch, or scale faster than anyone else.
+
+* Everything in Starter
+* Pro Picks: the top 5% government opportunities our power users stalk first
+* AI Research Agent: Get custom reports on any government opportunity
+* AI Chat Strategist: 100 Q&A sessions/month for government proposal strategy
+* Opportunity Builder: AI-powered prompts for government proposal development
+* Opportunity Suggest: feed your constraints, get tailor-made government opportunities
+* Data Exports: JSON for your government intelligence tools
+* Early-access to every government dataset & tool we ship
+
+### Compare Plans
+
+#### Discover Government Opportunities
+
+Skip months of research, find pre-validated government opportunities in minutes
+
+| Feature                    | Free                     | Starter | Pro |
+| -------------------------- | ------------------------ | ------- | --- |
+| Opportunity of the Day     | ✅                       | ✅      | ✅  |
+| Government Database Access | Limited to daily         | ✅      | ✅  |
+| Trends Analysis            | Daily only               | ✅      | ✅  |
+| Community Signals          | Daily only               | ✅      | ✅  |
+| Top Government Picks       | ❌                       | ❌      | ✅  |
+| AI Opportunity Suggestions | ❌                       | ❌      | ✅  |
+
+#### Analyze & Dive Deep
+
+50+ hours of government market research done for you on every single opportunity
+
+| Feature                    | Free      | Starter | Pro |
+| -------------------------- | --------- | ------- | --- |
+| Keyword Research           | Daily Only | ✅      | ✅  |
+| Community Signals          | Daily Only | ✅      | ✅  |
+| Opportunity Scores         | Daily Only | ✅      | ✅  |
+| Market Analysis            | Daily Only | ✅      | ✅  |
+| Why Now? Analysis          | Daily Only | ✅      | ✅  |
+| Market Gap Analysis        | Daily Only | ✅      | ✅  |
+| Proposal Planning          | Daily Only | ✅      | ✅  |
+
+#### Right for You?
+
+Stop wasting time on bad fits - instantly see what matches your government contracting situation
+
+| Feature                         | Free      | Starter | Pro |
+| ------------------------------- | --------- | ------- | --- |
+| Revenue Potential Analysis      | Daily Only | ✅      | ✅  |
+| Execution Difficulty Assessment | Daily Only | ✅      | ✅  |
+| Go-To-Market Strategy           | Daily Only | ✅      | ✅  |
+| Contractor Fit                  | Daily Only | ✅      | ✅  |
+| AI Contractor Fit Analysis      | 365 /yr   | 365 /yr | ✅  |
+
+#### Framework Fits
+
+No more guesswork - proven government frameworks already applied to each opportunity
+
+| Feature               | Free      | Starter | Pro |
+| --------------------- | --------- | ------- | --- |
+| Government Value Prop | Daily Only | ✅      | ✅  |
+| SBIR Framework        | Daily Only | ✅      | ✅  |
+| Contract Matrix       | Daily Only | ✅      | ✅  |
+| Proposal Ladder       | Daily Only | ✅      | ✅  |
+
+#### Dig Deeper
+
+Get custom government research in minutes, not weeks - AI agents work 24/7 for you
+
+| Feature                | Free           | Starter | Pro |
+| ---------------------- | -------------- | ------- | --- |
+| AI Agent Chat          | ❌             | ❌      | 100 /month |
+| AI Research Agent      | ❌             | ❌      | 3 opportunities /month |
+| Opportunity Builder    | ❌             | ❌      | ✅  |
+| Data Export            | ❌             | ❌      | ✅  |
+
+## 🔮 Roadmap
+
+### Upcoming Features
+- **Advanced Scraping**: Additional government data sources and APIs
+- **Machine Learning**: Enhanced opportunity scoring and trend prediction
+- **Real-Time Alerts**: Instant notifications for new government opportunities
+- **Advanced Analytics**: Predictive analytics for government contracting trends
+- **Research Automation**: Automated generation of comprehensive research reports
+
+### Performance Improvements
+- **Data Pipeline Optimization**: Faster data collection and processing
+- **AI Model Enhancement**: Improved pain point and opportunity identification
+- **Scalability**: Handle larger volumes of government data
+- **Monitoring**: Advanced tracking of data collection and analysis performance
+
+## 📞 Contact & Support
+
+### Get in Touch
+- **Email**: support@govideabrowser.com
+- **Twitter**: [@GovIdeaBrowser](https://twitter.com/GovIdeaBrowser)
+- **LinkedIn**: [Government Idea Browser](https://linkedin.com/company/govideabrowser)
+
+### Support Channels
+- **Documentation**: [docs.govideabrowser.com](https://docs.govideabrowser.com)
+- **Community**: [community.govideabrowser.com](https://community.govideabrowser.com)
+- **Status Page**: [status.govideabrowser.com](https://status.govideabrowser.com)
+
+### Business Inquiries
+- **Partnerships**: partnerships@govideabrowser.com
+- **Enterprise**: enterprise@govideabrowser.com
+- **Press**: press@govideabrowser.com
+
+## 🏆 Success Stories
+
+### Featured Users
+> *"Government Idea Browser helped us identify a $2M SBIR opportunity we would have missed. The AI analysis saved us weeks of research."* - **Sarah Chen, TechStart Solutions**
+
+> *"The daily opportunities keep us ahead of the curve. We've won 3 contracts this year thanks to their insights."* - **Mike Rodriguez, Defense Dynamics**
+
+> *"Finally, a platform that understands government contracting. The pain point analysis is spot-on."* - **Dr. Lisa Park, Innovation Labs**
+
+---
+
+**Built with ❤️ for better government intelligence and opportunity discovery**
+#
